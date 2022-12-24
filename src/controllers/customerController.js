@@ -88,7 +88,7 @@ const customerList = async function (req, res) {
 const deleteCustomer = async function (req, res) {
     try {
         let customerID = req.params._id 
-        if(!isValidObjectId(customerID)) return res.status(404).send({ status: false, msg: `please provide valid ${customerID}`});
+        if(!isValidObjectId(customerID)) return res.status(400).send({ status: false, msg: `please provide valid ${customerID}`});
 
         let checkCustomer = await customerModel.findOne({ _id: customerID  });
 
