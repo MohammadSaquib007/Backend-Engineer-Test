@@ -9,4 +9,4 @@ mongoose.connect("mongodb+srv://saquib:Saquib123@mohammadsaquib.f3sxbno.mongodb.
 .catch(err => console.log(err))
 app.use("/", route)
 app.listen(3000, function(){
-    console.log("Express port is running on "+3000)})
+console.log("Express port is running on "+3000)})

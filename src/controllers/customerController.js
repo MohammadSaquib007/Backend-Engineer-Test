@@ -1,6 +1,6 @@
 const customerModel = require('../models/customerModel')
 const { v4: uuidv4 } = require('uuid');
-const {isValidEmail,isValid,isValidRequestBody,validatePhone}=require('../validator/validator')
+const {isValidEmail,isValid,isValidRequestBody,validatePhone,isValidObjectId}=require('../validator/validator')
 
 //================================ Create new customer==================================
 const createCustomer = async (req, res) => {
@@ -69,6 +69,7 @@ const createCustomer = async (req, res) => {
 }
 
 
+
 //=================================GetAPI============================================
 
 const customerList = async function (req, res) {
@@ -87,6 +88,7 @@ const customerList = async function (req, res) {
 const deleteCustomer = async function (req, res) {
     try {
         let customerID = req.params._id 
+        if(!isValidObjectId(customerID)) return res.status(404).send({ status: false, msg: `please provide valid ${customerID}`});
 
         let checkCustomer = await customerModel.findOne({ _id: customerID  });
 
